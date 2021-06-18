@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=Fraunces:wght@700;900&display=swap");
+
+//variables
+$red: hsl(7, 99%, 70%);
+$yellow: hsl(51, 100%, 49%);
+$darkSaturatedCyan: hsl(167, 40%, 24%);
+$darkBlue: hsl(198, 62%, 26%);
+$darkModerateCyan: hsl(168, 34%, 41%);
+$lightModerateCyan: hsl(167, 44%, 70%);
+$darkBlue: hsl(212, 27%, 19%);
+$veryDarkGrayishBlue: hsl(213, 9%, 39%);
+$darkGrayishBlue: hsl(232, 10%, 55%);
+$grayishBlue: hsl(210, 4%, 67%);
+$white: hsl(0, 0%, 100%);
+
+$heading-text: "Fraunces", sans-serif;
+$body-text: "Barlow", sans-serif;
+
+@mixin flex-sb-ac {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-jc-ac {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-col-jc-ac {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-col-fe-ac {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@mixin reset-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

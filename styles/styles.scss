@@ -1,0 +1,315 @@
+@import "variables";
+
+:root {
+  box-sizing: border-box;
+}
+
+body {
+  box-sizing: inherit;
+  margin: 0;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+.nav {
+  @include flex-sb-ac;
+  padding: 2rem 1.5rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  $nav: &;
+
+  &--active {
+    #{ $nav }__burger--first {
+      transform: rotate(45deg);
+    }
+
+    #{ $nav }__burger--second {
+      opacity: 0;
+    }
+
+    #{ $nav }__burger--third {
+      transform: rotate(-45deg);
+    }
+
+    #{ $nav }__menu {
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
+
+  &__logo {
+    display: block;
+  }
+
+  &__toggle {
+    cursor: pointer;
+  }
+
+  &__burger {
+    display: block;
+    width: 1.2rem;
+    height: 2px;
+    background-color: $white;
+    border-radius: 2rem;
+    transition: 0.2s ease;
+
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+
+    &--first {
+      transform-origin: -1px 2px;
+    }
+
+    &--third {
+      transform-origin: 3px 2px;
+    }
+  }
+
+  &__menu {
+    @include reset-list;
+    position: absolute;
+    background-color: $white;
+    top: 100px;
+    left: 50%;
+    width: 88%;
+    transform: translateX(-50%);
+    padding: 1rem;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s ease;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateY(-98%);
+      border-right: 22px solid white;
+      border-left: 22px solid transparent;
+      border-top: 22px solid transparent;
+    }
+  }
+
+  &__item {
+    font-family: $body-text;
+    font-size: 1.1rem;
+    padding: 1rem 0;
+    color: $darkGrayishBlue;
+
+    &--contact {
+      display: inline-block;
+      font-family: $heading-text;
+      font-size: 1rem;
+      color: $darkBlue;
+      text-transform: uppercase;
+      background-color: $yellow;
+      padding: 1rem 1.5rem;
+      border-radius: 2rem;
+      margin: 0.8rem 0;
+    }
+  }
+}
+
+.heading-text {
+  font-family: $heading-text;
+  color: $darkBlue;
+
+  &--hero {
+    color: $white;
+    font-size: 3rem;
+  }
+
+  &--testimonials {
+    font-size: 1rem;
+    color: $grayishBlue;
+    text-align: center;
+    letter-spacing: 3px;
+  }
+}
+
+.body-text {
+  font-family: $body-text;
+  color: $darkGrayishBlue;
+  line-height: 1.5rem;
+}
+
+.cta-link {
+  font-family: $heading-text;
+  color: $darkBlue;
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+
+  &::after {
+    content: "";
+    width: 110%;
+    height: 0.45rem;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    z-index: -1;
+  }
+
+  &--yellow {
+    &::after {
+      background-color: $yellow;
+    }
+  }
+
+  &--red {
+    &::after {
+      background-color: $red;
+    }
+  }
+}
+
+.hero {
+  @include flex-col-jc-ac;
+  min-height: 80vh;
+  padding: 2rem 1.5rem;
+  background: url("/images/mobile/image-header.jpg") center 65%;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+
+  &--three-col {
+    grid-gap: 3rem;
+    margin: 3rem 0;
+  }
+
+  &--four-col {
+    //grid-template-columns: repeat(auto-fit, minmax(188px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__text {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    order: 1;
+  }
+
+  &__image {
+    max-width: 100%;
+    order: 0;
+
+    &--desktop {
+      display: none;
+    }
+  }
+
+  &__service {
+    @include flex-col-fe-ac;
+    height: 550px;
+    background-size: cover;
+    padding: 1.5rem;
+    text-align: center;
+
+    &--graphic-design {
+      background-image: url("/images/mobile/image-graphic-design.jpg");
+
+      .heading-text,
+      .body-text {
+        color: $darkSaturatedCyan;
+      }
+    }
+
+    &--photography {
+      background-image: url("/images/mobile/image-photography.jpg");
+
+      .heading-text,
+      .body-text {
+        color: $darkBlue;
+      }
+    }
+  }
+
+  &__project {
+    max-width: 100%;
+
+    &--desktop {
+      display: none;
+    }
+  }
+}
+
+.testimonials {
+  padding: 1.5rem;
+}
+
+.testimonial {
+  text-align: center;
+
+  &__author-image {
+    max-width: 60px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  &__text {
+    margin: 2rem 0;
+  }
+
+  &__author {
+    .heading-text {
+      margin: 0.5rem 0;
+    }
+
+    .body-text {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.footer {
+  background-color: $lightModerateCyan;
+  padding: 2rem;
+
+  &__logo {
+    display: block;
+    margin: 0 auto 2rem;
+  }
+
+  &__logo-path {
+    fill: $darkModerateCyan;
+  }
+
+  &__links {
+    @include flex-sb-ac;
+    @include reset-list;
+  }
+
+  &__link {
+    font-family: $body-text;
+    color: $darkModerateCyan;
+  }
+
+  &__socmed {
+    @include flex-jc-ac;
+    margin-top: 4rem;
+  }
+
+  &__socmed-icon {
+    margin: 0 0.5rem;
+    color: $darkModerateCyan;
+  }
+}
+
+.attribution {
+  padding: 1rem;
+  text-align: center;
+  font-family: $body-text;
+  font-size: 0.7rem;
+  color: $grayishBlue;
+}
