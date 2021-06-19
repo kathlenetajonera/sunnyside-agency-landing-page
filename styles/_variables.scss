@@ -2,9 +2,12 @@
 
 //variables
 $red: hsl(7, 99%, 70%);
+$lightRed: hsla(7, 99%, 70%, 0.25);
 $yellow: hsl(51, 100%, 49%);
+$lightYellow: hsla(51, 100%, 49%, 0.25);
 $darkSaturatedCyan: hsl(167, 40%, 24%);
 $darkBlue: hsl(198, 62%, 26%);
+$lightBlue: hsl(199, 97%, 71%);
 $darkModerateCyan: hsl(168, 34%, 41%);
 $lightModerateCyan: hsl(167, 44%, 70%);
 $darkBlue: hsl(212, 27%, 19%);
@@ -15,6 +18,19 @@ $white: hsl(0, 0%, 100%);
 
 $heading-text: "Fraunces", sans-serif;
 $body-text: "Barlow", sans-serif;
+
+$mediaBreakpoints: (
+  mobile: 23.4375rem,
+  tablet-sm: 37.5rem,
+  tablet: 48rem,
+  desktop-sm: 64rem,
+);
+
+@mixin media-query($size) {
+  @media (min-width: map-get($mediaBreakpoints, $size)) {
+    @content;
+  }
+}
 
 @mixin flex-sb-ac {
   display: flex;

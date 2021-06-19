@@ -21,6 +21,10 @@ body {
   width: 100%;
   $nav: &;
 
+  @include media-query(desktop-sm) {
+    padding: 2rem;
+  }
+
   &--active {
     #{ $nav }__burger--first {
       transform: rotate(45deg);
@@ -35,8 +39,9 @@ body {
     }
 
     #{ $nav }__menu {
-      opacity: 1;
-      pointer-events: initial;
+      // opacity: 1;
+      // pointer-events: initial;
+      display: block;
     }
   }
 
@@ -60,6 +65,10 @@ body {
       margin-bottom: 4px;
     }
 
+    @include media-query(tablet) {
+      display: none;
+    }
+
     &--first {
       transform-origin: -1px 2px;
     }
@@ -79,9 +88,10 @@ body {
     transform: translateX(-50%);
     padding: 1rem;
     text-align: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.2s ease;
+    display: none;
+    // opacity: 0;
+    // pointer-events: none;
+    // transition: 0.2s ease;
 
     &::before {
       content: "";
@@ -94,6 +104,15 @@ body {
       border-left: 22px solid transparent;
       border-top: 22px solid transparent;
     }
+
+    @include media-query(tablet) {
+      position: initial;
+      width: auto;
+      transform: none;
+      background-color: transparent;
+      padding: 0;
+      @include flex-sb-ac;
+    }
   }
 
   &__item {
@@ -101,6 +120,17 @@ body {
     font-size: 1.1rem;
     padding: 1rem 0;
     color: $darkGrayishBlue;
+    cursor: pointer;
+
+    @include media-query(tablet) {
+      font-size: 1rem;
+      padding: 0 1.5rem 0 0;
+      color: $white;
+    }
+
+    @include media-query(desktop-sm) {
+      padding-right: 3rem;
+    }
 
     &--contact {
       display: inline-block;
@@ -112,6 +142,18 @@ body {
       padding: 1rem 1.5rem;
       border-radius: 2rem;
       margin: 0.8rem 0;
+      transition: 0.2s ease-out;
+
+      &:hover {
+        background-color: $lightBlue;
+        color: $white;
+      }
+
+      @include media-query(tablet) {
+        font-size: 0.88rem;
+        background-color: $white;
+        margin: 0;
+      }
     }
   }
 }
@@ -119,10 +161,17 @@ body {
 .heading-text {
   font-family: $heading-text;
   color: $darkBlue;
+  font-weight: 900;
 
   &--hero {
     color: $white;
     font-size: 3rem;
+  }
+
+  &--about {
+    @include media-query(desktop-sm) {
+      font-size: 2.2rem;
+    }
   }
 
   &--testimonials {
@@ -135,6 +184,7 @@ body {
 
 .body-text {
   font-family: $body-text;
+  font-size: 0.9rem;
   color: $darkGrayishBlue;
   line-height: 1.5rem;
 }
@@ -156,66 +206,129 @@ body {
     transform: translateX(-50%);
     bottom: 0;
     z-index: -1;
+    border-radius: 2rem;
+    transition: 0.2s ease-out;
   }
 
   &--yellow {
     &::after {
-      background-color: $yellow;
+      background-color: $lightYellow;
+    }
+
+    &:hover {
+      &::after {
+        background-color: $yellow;
+      }
     }
   }
 
   &--red {
     &::after {
-      background-color: $red;
+      background-color: $lightRed;
+    }
+
+    &:hover {
+      &::after {
+        background-color: $red;
+      }
     }
   }
 }
 
 .hero {
   @include flex-col-jc-ac;
-  min-height: 80vh;
+  height: Max(523px, 80vh);
   padding: 2rem 1.5rem;
   background: url("/images/mobile/image-header.jpg") center 65%;
   text-align: center;
+
+  @include media-query(desktop-sm) {
+    min-height: 100vh;
+    background: url("/images/desktop/image-header.jpg") center;
+    background-size: cover;
+  }
 }
 
 .grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: center;
 
   &--three-col {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 3rem;
-    margin: 3rem 0;
+    margin: 3rem auto;
+    width: Min(1100px, 100%);
   }
 
   &--four-col {
-    //grid-template-columns: repeat(auto-fit, minmax(188px, 1fr));
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
+}
 
+.about {
   &__text {
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.5rem;
     text-align: center;
+    width: Min(450px, 100%);
+    margin: 0 auto;
     order: 1;
-  }
 
-  &__image {
-    max-width: 100%;
-    order: 0;
+    @include media-query(tablet-sm) {
+      text-align: left;
+    }
 
-    &--desktop {
-      display: none;
+    &--first {
+      @include media-query(tablet-sm) {
+        order: 0;
+      }
     }
   }
 
-  &__service {
+  &__text-body {
+    margin: 2rem 0;
+  }
+
+  &__image {
+    width: 100%;
+    object-fit: cover;
+    order: 0;
+
+    @include media-query(tablet-sm) {
+      height: 100%;
+    }
+
+    &--desktop {
+      display: none;
+
+      @include media-query(desktop-sm) {
+        display: block;
+      }
+    }
+
+    &--mobile {
+      @include media-query(desktop-sm) {
+        display: none;
+      }
+    }
+  }
+}
+
+.services {
+  &__item {
     @include flex-col-fe-ac;
     height: 550px;
     background-size: cover;
+    background-position: center;
     padding: 1.5rem;
     text-align: center;
 
     &--graphic-design {
       background-image: url("/images/mobile/image-graphic-design.jpg");
+
+      @include media-query(desktop-sm) {
+        background-image: url("/images/desktop/image-graphic-design.jpg");
+      }
 
       .heading-text,
       .body-text {
@@ -226,6 +339,10 @@ body {
     &--photography {
       background-image: url("/images/mobile/image-photography.jpg");
 
+      @include media-query(desktop-sm) {
+        background-image: url("/images/desktop/image-photography.jpg");
+      }
+
       .heading-text,
       .body-text {
         color: $darkBlue;
@@ -233,21 +350,23 @@ body {
     }
   }
 
-  &__project {
-    max-width: 100%;
-
-    &--desktop {
-      display: none;
-    }
+  &__text {
+    min-height: 200px;
+    width: Min(325px, 100%);
+    margin: 0 auto;
   }
 }
 
 .testimonials {
   padding: 1.5rem;
-}
 
-.testimonial {
-  text-align: center;
+  @include media-query(desktop-sm) {
+    padding: 5rem 1.5rem;
+  }
+
+  &__card {
+    text-align: center;
+  }
 
   &__author-image {
     max-width: 60px;
@@ -272,6 +391,26 @@ body {
   }
 }
 
+.projects {
+  &__image {
+    max-width: 100%;
+
+    &--desktop {
+      display: none;
+
+      @include media-query(desktop-sm) {
+        display: block;
+      }
+    }
+
+    &--mobile {
+      @include media-query(desktop-sm) {
+        display: none;
+      }
+    }
+  }
+}
+
 .footer {
   background-color: $lightModerateCyan;
   padding: 2rem;
@@ -288,11 +427,19 @@ body {
   &__links {
     @include flex-sb-ac;
     @include reset-list;
+    width: Min(250px, 100%);
+    margin: 0 auto;
   }
 
   &__link {
     font-family: $body-text;
+    font-size: 0.9rem;
     color: $darkModerateCyan;
+    cursor: pointer;
+
+    &:hover {
+      color: $white;
+    }
   }
 
   &__socmed {
@@ -303,6 +450,11 @@ body {
   &__socmed-icon {
     margin: 0 0.5rem;
     color: $darkModerateCyan;
+    cursor: pointer;
+
+    &:hover {
+      color: $white;
+    }
   }
 }
 
