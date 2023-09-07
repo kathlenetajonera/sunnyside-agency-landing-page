@@ -246,13 +246,13 @@ body {
   align-items: center;
   height: max(523px, 80vh);
   padding: 2rem 1.5rem;
-  background: url("/images/mobile/image-header.jpg") center 65%;
+  background: url("../images/mobile/image-header.jpg") center 65%;
   text-align: center;
 }
 @media (min-width: 64rem) {
   .hero {
     min-height: 100vh;
-    background: url("/images/desktop/image-header.jpg") center;
+    background: url("../images/desktop/image-header.jpg") center;
     background-size: cover;
   }
 }
@@ -329,11 +329,11 @@ body {
   text-align: center;
 }
 .services__item--graphic-design {
-  background-image: url("/images/mobile/image-graphic-design.jpg");
+  background-image: url("../images/mobile/image-graphic-design.jpg");
 }
 @media (min-width: 64rem) {
   .services__item--graphic-design {
-    background-image: url("/images/desktop/image-graphic-design.jpg");
+    background-image: url("../images/desktop/image-graphic-design.jpg");
   }
 }
 .services__item--graphic-design .heading-text,
@@ -341,11 +341,11 @@ body {
   color: hsl(167, 40%, 24%);
 }
 .services__item--photography {
-  background-image: url("/images/mobile/image-photography.jpg");
+  background-image: url("../images/mobile/image-photography.jpg");
 }
 @media (min-width: 64rem) {
   .services__item--photography {
-    background-image: url("/images/desktop/image-photography.jpg");
+    background-image: url("../images/desktop/image-photography.jpg");
   }
 }
 .services__item--photography .heading-text,
