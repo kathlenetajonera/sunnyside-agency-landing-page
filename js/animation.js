@@ -1,4 +1,10 @@
 (function () {
+    let smoother = ScrollSmoother.create({
+        smooth: 2,
+        effects: true,
+        normalizeScroll: true,
+    });
+
     animatedTyping();
     animatedFade();
     animatedFadeStagger();
@@ -12,8 +18,9 @@
             document.querySelectorAll(".animated-typing");
 
         elementsWithTypingEffect.forEach((el) => {
-            const splitText = new SplitText(el, { charsClass: "animated-letter++" })
-                .chars;
+            const splitText = new SplitText(el, {
+                charsClass: "animated-letter++",
+            }).chars;
 
             gsap.from(splitText, {
                 autoAlpha: 0,
