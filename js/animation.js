@@ -1,9 +1,11 @@
 (function () {
-    let smoother = ScrollSmoother.create({
-        smooth: 2,
-        effects: window.innerWidth > 1024,
-        normalizeScroll: true,
-    });
+    if (window.innerWidth > 1024) {
+        ScrollSmoother.create({
+            smooth: 2,
+            effects: true,
+            normalizeScroll: true,
+        });
+    }
 
     animatedTyping();
     animatedFade();
