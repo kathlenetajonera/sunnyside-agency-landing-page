@@ -1,7 +1,7 @@
 (function () {
     let smoother = ScrollSmoother.create({
         smooth: 2,
-        effects: true,
+        effects: window.innerWidth > 1024,
         normalizeScroll: true,
     });
 
